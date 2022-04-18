@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WebapiModelStoreContainer" CdmEntityContainer="GameApiEntities">
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="WebapiModel.Game">
+        <MappingFragment StoreEntitySet="Game">
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+          <ScalarProperty Name="GameName" ColumnName="GameName" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="MaxPlayers" ColumnName="MaxPlayers" />
+          <ScalarProperty Name="SetPassword" ColumnName="SetPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GameStatus">
+      <EntityTypeMapping TypeName="WebapiModel.GameStatu">
+        <MappingFragment StoreEntitySet="GameStatus">
+          <ScalarProperty Name="GameStatusId" ColumnName="GameStatusId" />
+          <ScalarProperty Name="PlayersTurn" ColumnName="PlayersTurn" />
+          <ScalarProperty Name="GameState" ColumnName="GameState" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="TimeRemaining" ColumnName="TimeRemaining" />
+          <ScalarProperty Name="NextPlayersTurn" ColumnName="NextPlayersTurn" />
+          <ScalarProperty Name="IsSkipped" ColumnName="IsSkipped" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlayerInGameStatus">
+      <EntityTypeMapping TypeName="WebapiModel.PlayerInGameStatu">
+        <MappingFragment StoreEntitySet="PlayerInGameStatus">
+          <ScalarProperty Name="PlayerInGameStatusId" ColumnName="PlayerInGameStatusId" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+          <ScalarProperty Name="PlayerScore" ColumnName="PlayerScore" />
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Players">
+      <EntityTypeMapping TypeName="WebapiModel.Player">
+        <MappingFragment StoreEntitySet="Players">
+          <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+          <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Statements">
+      <EntityTypeMapping TypeName="WebapiModel.Statement">
+        <MappingFragment StoreEntitySet="Statements">
+          <ScalarProperty Name="StatementId" ColumnName="StatementId" />
+          <ScalarProperty Name="Msg" ColumnName="Msg" />
+          <ScalarProperty Name="IsTrue" ColumnName="IsTrue" />
+          <ScalarProperty Name="GameID" ColumnName="GameID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

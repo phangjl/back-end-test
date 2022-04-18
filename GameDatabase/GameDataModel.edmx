@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WebapiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameName" Type="varchar" MaxLength="20" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="MaxPlayers" Type="int" />
+          <Property Name="SetPassword" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="GameStatus">
+          <Key>
+            <PropertyRef Name="GameStatusId" />
+          </Key>
+          <Property Name="GameStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayersTurn" Type="varchar" MaxLength="20" />
+          <Property Name="GameState" Type="int" />
+          <Property Name="IsSubmitted" Type="bit" />
+          <Property Name="TimeRemaining" Type="int" />
+          <Property Name="NextPlayersTurn" Type="varchar" MaxLength="20" />
+          <Property Name="IsSkipped" Type="bit" />
+          <Property Name="GameID" Type="int" />
+        </EntityType>
+        <EntityType Name="PlayerInGameStatus">
+          <Key>
+            <PropertyRef Name="PlayerInGameStatusId" />
+          </Key>
+          <Property Name="PlayerInGameStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsSubmitted" Type="bit" />
+          <Property Name="IsCorrect" Type="bit" />
+          <Property Name="PlayerScore" Type="int" />
+          <Property Name="PlayerId" Type="int" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlayerName" Type="varchar" MaxLength="20" />
+          <Property Name="GameID" Type="int" />
+        </EntityType>
+        <EntityType Name="Statements">
+          <Key>
+            <PropertyRef Name="StatementId" />
+          </Key>
+          <Property Name="StatementId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Msg" Type="varchar" MaxLength="100" />
+          <Property Name="IsTrue" Type="bit" />
+          <Property Name="GameID" Type="int" />
+        </EntityType>
+        <Association Name="FK__GameStatu__GameI__52593CB8">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="GameStatus" Type="Self.GameStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="GameStatus">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PlayerInG__Playe__5812160E">
+          <End Role="Players" Type="Self.Players" Multiplicity="0..1" />
+          <End Role="PlayerInGameStatus" Type="Self.PlayerInGameStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="PlayerInGameStatus">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Players__GameID__5535A963">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__GameI__5AEE82B9">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Statements" Type="Self.Statements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebapiModelStoreContainer">
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameStatus" EntityType="Self.GameStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlayerInGameStatus" EntityType="Self.PlayerInGameStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statements" EntityType="Self.Statements" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__GameStatu__GameI__52593CB8" Association="Self.FK__GameStatu__GameI__52593CB8">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameStatus" EntitySet="GameStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlayerInG__Playe__5812160E" Association="Self.FK__PlayerInG__Playe__5812160E">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="PlayerInGameStatus" EntitySet="PlayerInGameStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Players__GameID__5535A963" Association="Self.FK__Players__GameID__5535A963">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__GameI__5AEE82B9" Association="Self.FK__Statement__GameI__5AEE82B9">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebapiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="GameID" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="MaxPlayers" Type="Int32" />
+          <Property Name="SetPassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GameStatus" Relationship="Self.FK__GameStatu__GameI__52593CB8" FromRole="Game" ToRole="GameStatus" />
+          <NavigationProperty Name="Players" Relationship="Self.FK__Players__GameID__5535A963" FromRole="Game" ToRole="Players" />
+          <NavigationProperty Name="Statements" Relationship="Self.FK__Statement__GameI__5AEE82B9" FromRole="Game" ToRole="Statements" />
+        </EntityType>
+        <EntityType Name="GameStatu">
+          <Key>
+            <PropertyRef Name="GameStatusId" />
+          </Key>
+          <Property Name="GameStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayersTurn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GameState" Type="Int32" />
+          <Property Name="IsSubmitted" Type="Boolean" />
+          <Property Name="TimeRemaining" Type="Int32" />
+          <Property Name="NextPlayersTurn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsSkipped" Type="Boolean" />
+          <Property Name="GameID" Type="Int32" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__GameStatu__GameI__52593CB8" FromRole="GameStatus" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="PlayerInGameStatu">
+          <Key>
+            <PropertyRef Name="PlayerInGameStatusId" />
+          </Key>
+          <Property Name="PlayerInGameStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsSubmitted" Type="Boolean" />
+          <Property Name="IsCorrect" Type="Boolean" />
+          <Property Name="PlayerScore" Type="Int32" />
+          <Property Name="PlayerId" Type="Int32" />
+          <NavigationProperty Name="Player" Relationship="Self.FK__PlayerInG__Playe__5812160E" FromRole="PlayerInGameStatus" ToRole="Players" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="PlayerId" />
+          </Key>
+          <Property Name="PlayerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlayerName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GameID" Type="Int32" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__Players__GameID__5535A963" FromRole="Players" ToRole="Game" />
+          <NavigationProperty Name="PlayerInGameStatus" Relationship="Self.FK__PlayerInG__Playe__5812160E" FromRole="Players" ToRole="PlayerInGameStatus" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="StatementId" />
+          </Key>
+          <Property Name="StatementId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Msg" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsTrue" Type="Boolean" />
+          <Property Name="GameID" Type="Int32" />
+          <NavigationProperty Name="Game" Relationship="Self.FK__Statement__GameI__5AEE82B9" FromRole="Statements" ToRole="Game" />
+        </EntityType>
+        <Association Name="FK__GameStatu__GameI__52593CB8">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="GameStatus" Type="Self.GameStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="GameStatus">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Players__GameID__5535A963">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Players" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Statement__GameI__5AEE82B9">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="Statements" Type="Self.Statement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="GameID" />
+            </Principal>
+            <Dependent Role="Statements">
+              <PropertyRef Name="GameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PlayerInG__Playe__5812160E">
+          <End Role="Players" Type="Self.Player" Multiplicity="0..1" />
+          <End Role="PlayerInGameStatus" Type="Self.PlayerInGameStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Players">
+              <PropertyRef Name="PlayerId" />
+            </Principal>
+            <Dependent Role="PlayerInGameStatus">
+              <PropertyRef Name="PlayerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameApiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="GameStatus" EntityType="Self.GameStatu" />
+          <EntitySet Name="PlayerInGameStatus" EntityType="Self.PlayerInGameStatu" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="Statements" EntityType="Self.Statement" />
+          <AssociationSet Name="FK__GameStatu__GameI__52593CB8" Association="Self.FK__GameStatu__GameI__52593CB8">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="GameStatus" EntitySet="GameStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Players__GameID__5535A963" Association="Self.FK__Players__GameID__5535A963">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Statement__GameI__5AEE82B9" Association="Self.FK__Statement__GameI__5AEE82B9">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Statements" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PlayerInG__Playe__5812160E" Association="Self.FK__PlayerInG__Playe__5812160E">
+            <End Role="Players" EntitySet="Players" />
+            <End Role="PlayerInGameStatus" EntitySet="PlayerInGameStatus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebapiModelStoreContainer" CdmEntityContainer="GameApiEntities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="WebapiModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="MaxPlayers" ColumnName="MaxPlayers" />
+                <ScalarProperty Name="SetPassword" ColumnName="SetPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameStatus">
+            <EntityTypeMapping TypeName="WebapiModel.GameStatu">
+              <MappingFragment StoreEntitySet="GameStatus">
+                <ScalarProperty Name="GameStatusId" ColumnName="GameStatusId" />
+                <ScalarProperty Name="PlayersTurn" ColumnName="PlayersTurn" />
+                <ScalarProperty Name="GameState" ColumnName="GameState" />
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="TimeRemaining" ColumnName="TimeRemaining" />
+                <ScalarProperty Name="NextPlayersTurn" ColumnName="NextPlayersTurn" />
+                <ScalarProperty Name="IsSkipped" ColumnName="IsSkipped" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlayerInGameStatus">
+            <EntityTypeMapping TypeName="WebapiModel.PlayerInGameStatu">
+              <MappingFragment StoreEntitySet="PlayerInGameStatus">
+                <ScalarProperty Name="PlayerInGameStatusId" ColumnName="PlayerInGameStatusId" />
+                <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+                <ScalarProperty Name="PlayerScore" ColumnName="PlayerScore" />
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="WebapiModel.Player">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="PlayerId" ColumnName="PlayerId" />
+                <ScalarProperty Name="PlayerName" ColumnName="PlayerName" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statements">
+            <EntityTypeMapping TypeName="WebapiModel.Statement">
+              <MappingFragment StoreEntitySet="Statements">
+                <ScalarProperty Name="StatementId" ColumnName="StatementId" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="IsTrue" ColumnName="IsTrue" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

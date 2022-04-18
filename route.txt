@@ -1,0 +1,69 @@
+1. CreateGame POST
+https://localhost:44378/api/games
+e.g body:
+{
+    "GameName": "final test game",
+    "StartTime": "2022-03-03 13:13:13",
+    "MaxPlayers": "100",
+    "SetPassword":"100"
+}
+
+
+2. JoinGame POST
+https://localhost:44378/api/players
+e.g body:
+{
+    "PlayerName": "final test player",
+    "GameID": "12"
+}
+
+
+3. InputStatement / SubmitStatement POST
+https://localhost:44378/api/statements
+Authorization
+e.g body:
+{
+    "Msg": "this is the final test message",
+    "IsTrue": "true",
+    "GameID": "12"
+}
+
+
+4. CheckGameStatus GET
+https://localhost:44378/api/games/<gameID>
+Authorization
+
+
+5. OutputStatement GET
+https://localhost:44378/api/statements/<statementID>
+Authorization
+
+
+6. ViewScoreBoard GET
+https://localhost:44378/api/players?gid=<gameID>
+Authorization
+
+7. InsertGameStatus POST
+https://localhost:44378/api/GameStatus
+Authorization
+e.g body:
+{
+    "PlayersTurn": "true",
+    "GameState": 2,
+    "IsSubmitted": "true",
+    "TimeRemaining": 30,
+    "NextPlayersTurn": "unknown",
+    "IsSkipped": "false",
+    "GameID": "12"
+}
+
+8. InsertPlayerStatus POST
+https://localhost:44378/api/PlayerInGameStatus
+Authorization
+e.g body:
+{
+    "IsSubmitted": "true",
+    "IsCorrect":  "false",
+    "PlayerScore": "100",
+    "PlayerId": 6
+}

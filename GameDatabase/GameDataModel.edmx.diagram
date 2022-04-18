@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="271047fc4ac34aa396ae65599c073724" Name="Diagram1">
+        <EntityTypeShape EntityType="WebapiModel.Game" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebapiModel.GameStatu" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebapiModel.PlayerInGameStatu" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebapiModel.Player" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebapiModel.Statement" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="WebapiModel.FK__GameStatu__GameI__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="WebapiModel.FK__Players__GameID__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="WebapiModel.FK__Statement__GameI__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="WebapiModel.FK__PlayerInG__Playe__5812160E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

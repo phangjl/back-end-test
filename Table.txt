@@ -1,0 +1,56 @@
+Create Database Webapi
+Go
+
+Use Webapi
+Go
+
+Create table Game
+(
+	GameID int primary key identity(1,1) NOT NULL,
+    GameName varchar(20),
+    StartTime datetime,
+    MaxPlayers int,
+    SetPassword varchar(10),	
+)
+Go
+
+Create table GameStatus
+(
+	GameStatusId int primary key identity(1,1) NOT NULL,
+	PlayersTurn varchar(20),
+	GameState int,
+	IsSubmitted bit,
+	TimeRemaining int,
+	NextPlayersTurn varchar(20),
+	IsSkipped bit,
+	GameID int FOREIGN KEY REFERENCES Game(GameID)
+)
+Go
+
+Create table Players
+(
+	PlayerId int primary key identity(1,1) NOT NULL,
+    PlayerName varchar(20),
+    /*Password varchar,*/
+	GameID int FOREIGN KEY REFERENCES Game(GameID)
+)
+Go
+
+Create table PlayerInGameStatus
+(
+	PlayerInGameStatusId int primary key identity(1,1) NOT NULL,
+	IsSubmitted bit,
+	IsCorrect bit,
+	PlayerScore int,
+	PlayerId int FOREIGN KEY REFERENCES Players(PlayerId)
+)
+Go
+
+Create table Statements
+(
+	StatementId int primary key identity(1,1) NOT NULL,
+    Msg varchar(100),
+    IsTrue bit,
+	GameID int FOREIGN KEY REFERENCES Game(GameID)
+)
+Go

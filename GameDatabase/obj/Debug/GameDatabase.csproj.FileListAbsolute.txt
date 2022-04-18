@@ -1,0 +1,14 @@
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\GameDatabase.dll.config
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\GameDatabase.dll
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\GameDatabase.pdb
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\EntityFramework.dll
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\EntityFramework.xml
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\obj\Debug\GameDatabase.csprojAssemblyReference.cache
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\obj\Debug\GameDatabase.csproj.CoreCompileInputs.cache
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\obj\Debug\GameDatabase.csproj.CopyComplete
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\obj\Debug\GameDatabase.dll
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\obj\Debug\GameDatabase.pdb
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\Microsoft.IdentityModel.Logging.dll
+C:\Users\jialu\Desktop\GameWebApi\GameDatabase\bin\Debug\Microsoft.IdentityModel.Logging.xml
